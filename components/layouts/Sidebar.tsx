@@ -3,10 +3,16 @@
 import React, {useEffect, useState} from 'react';
 import {filterData} from "@/lib/data";
 import {VscLayoutSidebarLeft} from "react-icons/vsc";
+import {useDispatch, useSelector} from "react-redux";
+import filterSlice from "@/redux/features/filter-slice";
+import {AppDispatch} from "@/redux/store";
+import {filterSelector} from "@/redux/selectors";
 
 function Sidebar() {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const dispatch = useDispatch<AppDispatch>();
+  const filterList = useSelector(filterSelector);
 
   useEffect(() => {
     function handleResize() {
@@ -17,6 +23,9 @@ function Sidebar() {
       }
     }
 
+    // On first loading
+    handleResize();
+
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -25,8 +34,10 @@ function Sidebar() {
   }, [])
 
   return (
-    <aside className="flex justify-center shadow-[-10px_0_15px_-5px_rgba(0,0,0,0.3)] shadow-black/[0.03] backdrop-blur-[0.5rem]">
-      <div className={!isSidebarOpen ? 'shadow-[10px_0_15px_-5px_rgba(0,0,0,0.3)] shadow-black/[0.05] backdrop-blur-[0.5rem]' : ""}>
+    <aside
+      className="flex justify-center shadow-[-10px_0_15px_-5px_rgba(0,0,0,0.3)] shadow-black/[0.03] backdrop-blur-[0.5rem]">
+      <div
+        className={!isSidebarOpen ? 'shadow-[10px_0_15px_-5px_rgba(0,0,0,0.3)] shadow-black/[0.05] backdrop-blur-[0.5rem]' : ""}>
         <button className={`text-2xl cursor-pointer p-1 mx-1 mt-3 rounded ${isSidebarOpen && 'bg-gray-300'}`}
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
           <VscLayoutSidebarLeft/>
@@ -45,10 +56,15 @@ function Sidebar() {
                   {filter.options.map((filterOption, index) => (
                     <li key={index} className="flex items-center gap-4 text-sm font-HelveticaMedium">
                       <div className="flex items-center mb-4 ml-3 select-none">
-                        <input id={filterOption} type="checkbox" value=""
-                               className="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded cursor-pointer focus:ring-transparent focus:transition dark:focus:ring-transparent dark:ring-transparent focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+                        <input id={filterOption}
+                               type="checkbox"
+                               value=""
+                               className="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded cursor-pointer focus:ring-transparent focus:transition dark:focus:ring-transparent dark:ring-transparent focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                               onChange={() => dispatch(filterSlice.actions.categoryFilterChange(filterOption))}
+                               checked={filterList.categories.some(filter => filter === filterOption)}
+                        />
                         <label htmlFor={filterOption}
-                               className="ms-2 text-sm font-medium hover:underline dark:text-gray-300 cursor-pointer">{filterOption}</label>
+                               className="ms-2 text-sm font-medium dark:text-gray-300 cursor-pointer">{filterOption}</label>
                       </div>
                     </li>
                   ))}
