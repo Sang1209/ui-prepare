@@ -7,7 +7,7 @@ function PopularSection() {
   return (
     <section className="mx-auto">
       <div className="mt-10 flex flex-col items-center justify-center gap-5 text-center">
-        <h1 className="text-5xl font-HelveticaBold">The unlimited creative subscription</h1>
+        <h1 className="text-5xl font-HelveticaBold dark:text-gray-300">The unlimited creative subscription</h1>
         <h3 className="font-HelveticaMedium text-gray-500">Unlimited downloads of 17+ million creative assets. From
           just $16.50 month</h3>
       </div>

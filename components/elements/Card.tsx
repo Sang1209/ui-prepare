@@ -2,8 +2,9 @@
 
 import React, {useState} from 'react';
 import Image from "next/image";
-import { IoIosHeartEmpty } from "react-icons/io";
-import { GoHeartFill } from "react-icons/go";
+import {IoIosHeartEmpty} from "react-icons/io";
+import {GoHeartFill} from "react-icons/go";
+import Tippy from "@tippyjs/react/headless";
 
 interface CardProps {
   title: string,
@@ -19,7 +20,7 @@ function Card({title, image, date, category, href}: CardProps) {
 
   return (
     <div
-      className="flex flex-col w-64 bg-white border border-gray-200 cursor-pointer justify-self-center align-self-center rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:transition-transform hover:-translate-y-[1px] hover:shadow-md">
+      className="flex flex-col w-64 bg-white border border-dark-0/20 cursor-pointer justify-self-center align-self-center rounded-lg shadow dark:bg-dark-400 dark:border-dark-800 hover:transition-transform hover:-translate-y-[1px] hover:shadow-md">
       <a href="#">
         <Image className="rounded-t-lg w-64 h-28 object-cover"
                src={image}
@@ -35,9 +36,20 @@ function Card({title, image, date, category, href}: CardProps) {
           <p className="text-xs text-gray-700 dark:text-gray-400">{date}</p>
           <p className="text-xs font-HelveticaMedium text-gray-400 dark:text-gray-400">{category}</p>
         </div>
-        <div className="text-2xl text-primary" onClick={() => setIsLiked(!isLiked)}>
-          {isLiked ? <GoHeartFill/> : <IoIosHeartEmpty/>}
-        </div>
+        <Tippy
+          interactive={true}
+          appendTo={() => document.body}
+          render={attrs => (
+            <div
+              className="font-bold bg-white p-2 rounded-md shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] dark:bg-dark-0 dark:text-gray-300">
+              <h1>{isLiked ? "Unlike" : "Like"}</h1>
+            </div>
+          )}
+        >
+          <div className="text-2xl text-primary" onClick={() => setIsLiked(!isLiked)}>
+            {isLiked ? <GoHeartFill/> : <IoIosHeartEmpty/>}
+          </div>
+        </Tippy>
       </div>
     </div>
   );

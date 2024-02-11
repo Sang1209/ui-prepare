@@ -4,7 +4,7 @@ import {footerData, footerSocialData} from "@/lib/data";
 
 function Footer() {
   return (
-    <footer className="z-[999] bg-background dark:bg-gray-900 shadow-[0_-10px_15px_-5px_rgba(0,0,0,0.3)] shadow-black/[0.03] backdrop-blur-[0.5rem]">
+    <footer className="z-[999] bg-background dark:bg-dark-500 shadow-[0_-10px_15px_-5px_rgba(0,0,0,0.3)] shadow-black/[0.03] backdrop-blur-[0.5rem] dark:shadow-black/[0.3]">
       <div className="mx-auto">
         <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 mx-auto lg:w-[1150px] md:grid-cols-4">
           {footerData.map((footer, index) => (<div key={index}>
@@ -20,7 +20,7 @@ function Footer() {
             <Image className="cursor-pointer" src="/images/mobile-app.svg" alt="Get Mobile App" width="300" height="100"/>
           </div>
         </div>
-        <div className="px-4 py-6 bg-gray-100 dark:bg-gray-700">
+        <div className="px-4 py-6 bg-gray-100 dark:bg-dark-300">
           <div className="lg:w-[1150px] mx-auto md:flex md:items-center md:justify-between">
           <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2023 <a
             href="https://flowbite.com/">NextJS™</a>. All Rights Reserved.

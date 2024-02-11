@@ -2,9 +2,11 @@ import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
 import './globals.css'
 import React from "react";
-import Header from "@/components/layouts/Header";
-import Footer from "@/components/layouts/Footer";
+import Header from "@/components/layouts/main/Header";
+import Footer from "@/components/layouts/main/Footer";
 import ReduxProvider from "@/redux/provider";
+import ThemeContextProvider from "@/context/theme-context";
+import ThemeSwitch from "@/components/elements/ThemeSwitch";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -20,12 +22,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-    <body className={`font-HelveticaRegular bg-background ${inter.className}`}>
-    <ReduxProvider>
-      <Header/>
-      {children}
-      <Footer/>
-    </ReduxProvider>
+    <body className={`font-HelveticaRegular bg-background dark:bg-dark-500 ${inter.className}`}>
+    <ThemeContextProvider>
+      <ReduxProvider>
+        {children}
+        <ThemeSwitch/>
+      </ReduxProvider>
+    </ThemeContextProvider>
     </body>
     </html>
   )

@@ -40,7 +40,7 @@ html ::-webkit-scrollbar-thumb {
 
 html *::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: rgba(22, 24, 35, .06);
+  background-color: darkgray;
 }
 
 html ::-webkit-scrollbar-track {
