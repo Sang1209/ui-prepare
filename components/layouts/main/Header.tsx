@@ -18,7 +18,7 @@ import {useTheme} from "@/context/theme-context";
 
 function Header() {
 
-  const [isSignIn, setIsSignIn] = useState(true);
+  const [isSignIn, setIsSignIn] = useState(false);
   const {theme} = useTheme();
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const dropdownMenuRef = useRef(null);
