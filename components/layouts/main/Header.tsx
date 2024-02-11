@@ -113,7 +113,7 @@ function Header() {
             </Link>
           )}
           <div className="md:hidden" onClick={() => setDropdownMenu(!dropdownMenu)}>
-            <IoMenu className="text-4xl cursor-pointer"/>
+            <IoMenu className="text-4xl cursor-pointer dark:text-gray-300"/>
           </div>
         </div>
       </div>

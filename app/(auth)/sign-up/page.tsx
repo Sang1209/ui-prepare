@@ -78,7 +78,7 @@ function SignUp() {
           </form>
           <div className="flex justify-center items-center gap-3 w-4/5 my-2">
             <hr className="w-full bg-gray-300/50"/>
-            <span className="text-sm">OR</span>
+            <span className="text-sm dark:text-gray-300">OR</span>
             <hr className="w-full bg-gray-300/50"/>
           </div>
           <Button className="w-4/5 flex items-center">
